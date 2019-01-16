@@ -45,6 +45,10 @@ Upload File
         </div>
         <hr>
         <a href="{{url('form/uploadfile/add')}}" class="btn btn-outline-primary btn-lg"><i class="fas fa-plus-square">Add</i></a>
+          <a href="{{ url('/form/uploadfile/pdf')}}">
+              <button class="btn btn-success">Download PDF</button></a>
+              
+            <a href="{{ url('/form/uploadfile/downloadExcel/xlsx') }}"><button class="btn btn-success">Download Excel</button></a>
       </div>
     </div>
 @endsection

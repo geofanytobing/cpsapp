@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\UploadFile;
 use Hash;
+use Illuminate\Support\Facades\Response;
+use DB;
+use Excel;
+use App\Test;
+use Illuminate\Support\Facades\View;    
+use PDF;
+use Expection;
 
 class UploadFileController extends Controller
 {
@@ -13,7 +20,24 @@ class UploadFileController extends Controller
     {
     	return view('form.uploadfile.index');
     }
+     public function downloadExcel($type)
+    {
+        $data = UploadFile::all()->toArray();
+            
+        return Excel::create('LaporanUploadFile', function($excel) use ($data) {
+            $excel->sheet('mySheet', function($sheet) use ($data)
+            {
+                $sheet->fromArray($data);
+            });
+        })->download($type);
+    }
+    public function pdf()
+    {
 
+      $test = UploadFile::all();
+      $pdf = PDF::loadView('form.uploadfile.pdf');
+      return $pdf->download('LaporanUploadFile.pdf');
+    }
     public function add()
     {
     	return view('form.uploadfile.add');

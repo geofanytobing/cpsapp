@@ -46,6 +46,10 @@ Pemasukan
         </div>
         <hr>
           <a href="{{url('form/pengeluaran/add')}}" class="btn btn-outline-primary btn-lg"><i class="fas fa-plus-square"></i>Add</a>
+          <a href="{{ url('/form/pengeluaran/pdf')}}">
+              <button class="btn btn-success">Download PDF</button></a>
+              
+            <a href="{{ url('/form/pengeluaran/downloadExcel/xlsx') }}"><button class="btn btn-success">Download Excel</button></a>
       </div>
     </div>
 @endsection

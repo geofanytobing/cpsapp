@@ -4,12 +4,57 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\LaporanKeuangan;
+use Illuminate\Support\Facades\Response;
+use DB;
+use Excel;
+use App\Test;
+use Illuminate\Support\Facades\View;    
+use PDF;
+use Expection;
+
 
 class LaporanKeuanganController extends Controller
 {
     public function indexpemasukan()
     {
     	return view('form.pemasukan.index');
+    }
+    
+    public function pdf()
+    {
+
+    $test = LaporanKeuangan::all();
+      $pdf = PDF::loadView('form.pemasukan.pdf');
+      return $pdf->download('LaporanPemasukan.pdf');
+    }
+    public function pdf1()
+    {
+
+    $pen = LaporanKeuangan::all();
+      $pdf = PDF::loadView('form.pengeluaran.pdf');
+      return $pdf->download('LaporanPengeluaran.pdf');
+    }
+    public function downloadExcel($type)
+    {
+        $data = LaporanKeuangan::all()->where('tipe',1);
+            
+        return Excel::create('LaporanPemasukan', function($excel) use ($data) {
+            $excel->sheet('mySheet', function($sheet) use ($data)
+            {
+                $sheet->fromArray($data);
+            });
+        })->download($type);
+    }
+     public function downloadExcel1($type)
+    {
+        $data = LaporanKeuangan::all()->where('tipe',2);
+            
+        return Excel::create('LaporanPengeluaran', function($excel) use ($data) {
+            $excel->sheet('mySheet', function($sheet) use ($data)
+            {
+                $sheet->fromArray($data);
+            });
+        })->download($type);
     }
 
     public function addpemasukan()
