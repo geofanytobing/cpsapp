@@ -13,14 +13,6 @@ class WebcamController extends Controller
     	return view('webcam.index');
     }
 
-    public function web(Request $q){
-        $w = new \App\Webcam;
-        $w->nama = "asdasd";
-        $w->gambar = $q->gambar;
-        dd($q->gambar);
-        $w->save();
-    }
-
     public function save(Request $r)
     {
     	$nama = $r->nama;
@@ -29,9 +21,10 @@ class WebcamController extends Controller
         $image = base64_decode($image);
         $filename = 'image_'.time().'.png';
         file_put_contents('uploads/'.$filename,$image);
-        $webcam = new Webcam;
+        $webcam = new \App\CekAbsensi;
         $webcam->nama = $nama;
-        $webcam->gambar = $filename;
+        $webcam->foto = $filename;
+        $webcam->jammasuk = '123';
         $webcam->save();
 
         return redirect(url('webcam/'));
