@@ -59,7 +59,8 @@ Route::get('/uploadfile', function () {
     return view('form.uploadfile.index');
 });
 
-
+Route::post('/webcam/save', 'WebcamController@save');
+Route::get('/webcam/', 'WebcamController@index');
 
 Auth::routes();
 
