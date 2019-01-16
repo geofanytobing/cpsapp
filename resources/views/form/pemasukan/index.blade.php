@@ -10,7 +10,7 @@ Pemasukan
           <table class="table" id="example">
           <thead>
             <tr>
-              <th>#</th>
+              <th>No</th>
               <th>Judul</th>
               <th>Jumlah Pemasukan</th>
               <th>Tanggal</th>
@@ -18,27 +18,34 @@ Pemasukan
               <th colspan="2">Action</th>
             </tr>
           </thead>
-          <tbody>
-
+          <tbody> 
+          <?php
+              $i= 1;
+              $l = \App\LaporanKeuangan::all()->where('tipe',1);
+              ?>
+              @foreach($l as $q)
             <tr>
-<!--  -->
-              <td>#</td>
-              <td>#</td>
-              <td>#</td>
-              <td>#</td>
-              <td>#</td>
+              <th scope="row">{{$i++}}</th>
+              <td>{{$q->judul}}</td>
+              <td>{{$q->jumlah}}</td>
+              <td>{{$q->tanggal}}</td>
+              <td>{!!$q->rincian!!}</td>
               <td>
-                <a href="{{url('pemasukan/edit')}}" class="btn btn-outline-warning btn-sm"><i class="fas fa-pen"></i>Edit</a>
-                 <a href="#" onclick="return confirm('anda yakin untuk menghapusnya ?')" 
-                 class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i>Hapus</a>
+                <a href="{{url('form/pemasukan/edit/'.$q->id)}}" class="btn btn-outline-warning btn-sm">
+                  <i class="fa fa-edit"></i>
+                </a>
+                 <a href="{{url('form/pemasukan/delete/'.$q->id)}}" onclick="return confirm('anda yakin untuk menghapusnya ?')" 
+                 class="btn btn-outline-danger btn-sm">
+                   <i class="fa fa-trash"></i>
+                 </a>
               </td>
             </tr>
-
+            @endforeach               
           </tbody>
         </table>
         </div>
         <hr>
-          <a href="{{url('pemasukan/add')}}" class="btn btn-outline-primary btn-lg"><i class="fas fa-plus-square">Add</i></a>
+          <a href="{{url('/form/pemasukan/add')}}" class="btn btn-outline-primary btn-lg"><i class="fas fa-plus-square">Add</i></a>
       </div>
     </div>
 @endsection

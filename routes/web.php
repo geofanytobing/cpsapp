@@ -14,53 +14,34 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/form', function () {
-    return view('form.index');
-});
-
-
-Route::get('/pemasukan', function () {
-    return view('form.pemasukan.index');
-});
-Route::get('/pemasukan/add', function () {
-    return view('form.pemasukan.add');
-});
-Route::get('/pemasukan/edit', function () {
-    return view('form.pemasukan.edit');
-});
-
-
-Route::get('/pengeluaran/add', function () {
-    return view('form.pengeluaran.add');
-});
-Route::get('/pengeluaran/edit', function () {
-    return view('form.pengeluaran.edit');
-});
-Route::get('/pengeluaran', function () {
-    return view('form.pengeluaran.index');
-});
-
-
-Route::get('/cekabsensi', function () {
-    return view('form.cekabsensi.index');
-});
-Route::get('/cekabsensi/add', function () {
-    return view('form.cekabsensi.add');
-});
-
-
-Route::get('/uploadfile/add', function () {
-    return view('form.uploadfile.add');
-});
-Route::get('/uploadfile/edit', function () {
-    return view('form.uploadfile.edit');
-});
-Route::get('/uploadfile', function () {
-    return view('form.uploadfile.index');
-});
-
-
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('form/pemasukan', 'LaporanKeuanganController@indexpemasukan')->name('addpemasukan');
+Route::get('form/pemasukan/add', 'LaporanKeuanganController@addpemasukan')->name('addpemasukan');
+Route::post('form/pemasukan/save', 'LaporanKeuanganController@savepemasukan')->name('savepemasukan');
+Route::get('form/pemasukan/edit/{id}', 'LaporanKeuanganController@editpemasukan')->name('editpemasukan');
+Route::post('form/pemasukan/update', 'LaporanKeuanganController@updatepemasukan')->name('updatepemasukan');
+Route::get('form/pemasukan/delete/{id}', 'LaporanKeuanganController@deletepemasukan')->name('deletepemasukan');
+
+Route::get('form/pengeluaran', 'LaporanKeuanganController@indexpengeluaran')->name('addpengeluaran');
+Route::get('form/pengeluaran/add', 'LaporanKeuanganController@addpengeluaran')->name('addpengeluaran');
+Route::post('form/pengeluaran/save', 'LaporanKeuanganController@savepengeluaran')->name('savepengeluaran');
+Route::get('form/pengeluaran/edit/{id}', 'LaporanKeuanganController@editpengeluaran')->name('editpengeluaran');
+Route::post('form/pengeluaran/update', 'LaporanKeuanganController@updatepengeluaran')->name('updatepengeluaran');
+Route::get('form/pengeluaran/delete/{id}', 'LaporanKeuanganController@deletepengeluaran')->name('deletepengeluaran');
+
+Route::get('form/uploadfile', 'UploadFileController@index')->name('adduploadfile');
+Route::get('form/uploadfile/add', 'UploadFileController@add')->name('adduploadfile');
+Route::post('form/uploadfile/save', 'UploadFileController@save')->name('saveuploadfile');
+Route::get('form/uploadfile/edit/{id}', 'UploadFileController@edit')->name('edituploadfile');
+Route::post('form/uploadfile/update', 'UploadFileController@update')->name('updateuploadfile');
+Route::get('form/uploadfile/delete/{id}', 'UploadFileController@delete')->name('deleteuploadfile');
+Route::get('form/uploadfile/download/{file}', 'UploadFileController@download')->name('downloaduploadfile');
+
+Route::get('cekabsensi', 'UploadFileController@index')->name('adduploadfile');
+Route::get('cekabsensi/add', 'UploadFileController@add')->name('adduploadfile');
+Route::post('cekabsensi/save', 'UploadFileController@save')->name('saveuploadfile');
+Route::get('cekabsensi/delete/{id}', 'UploadFileController@delete')->name('deleteuploadfile');
