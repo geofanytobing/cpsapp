@@ -12,12 +12,22 @@
       padding: 5px;
       text-align: left;
     }
+     .footer {
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: black;
+   text-align: right;
+}
   </style>
 </head>
 <body>
 
-
-<h1>Laporan Pemasukan</h1>
+ <img src="./gambar/capstone.jpeg" style="width: 100px; margin-left: 600px;">
+<h1 style="text-align: center">Capstone Indonesia</h1>
+<h1 style="text-align: center">IT Developer</h1>
+<h2>Laporan Pemasukan</h1>
 <table>
   <thead>
     <tr>
@@ -43,5 +53,20 @@
               @endforeach
   </tbody>
 </table>
+
+<div class="footer">
+<p>Jalan Teratai 7 No.47 <br>
+  Kampung Makasar, Jakarta Timur <br>  
+
+  10570 DKI Jakarta
+  <br>
+  (62) 813 - 9008 0691
+  <br>
+  (62) 812 - 1022 2119
+  <br>
+  www.capstoneindonesia.net</p>
+
+</div>
+
 </body>
 </html>
