@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/webcam/save', 'WebcamController@save');
+Route::get('/webcam/', 'WebcamController@index');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
