@@ -17,24 +17,34 @@ Upload File
             </tr>
           </thead>
           <tbody>
-
+            <?php
+              $i= 1;
+              $l = \App\UploadFile::all();
+              ?>
+              @foreach($l as $q)
             <tr>
-              <td>#</td>
-              <td>#</td>
-              <td>#</td>
-              <td>#</td>
+              <th scope="row">{{$i++}}</th>
+              <td>{{$q->nama}}</td>
+              <td>{{$q->file}}</td>
               <td>
-              <a href="{{url('uploadfile/edit')}}" class="btn btn-outline-warning btn-sm">Edit</a>
-                 <a href="#" onclick="return confirm('anda yakin untuk menghapusnya ?')" 
-                 class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i>Hapus</a>
+                <a href="{{url('form/uploadfile/edit/'.$q->id)}}" class="btn btn-outline-warning btn-sm">
+                  <i class="fa fa-edit">Edit</i>
+                </a>
+                 <a href="{{url('form/uploadfile/delete/'.$q->id)}}" onclick="return confirm('anda yakin untuk menghapusnya ?')" 
+                 class="btn btn-outline-danger btn-sm">
+                   <i class="fa fa-trash">Hapus</i>
+                 </a>
+                 <a href="{{url('form/uploadfile/download/'.$q->file)}}" class="btn btn-outline-success btn-sm">
+                  <i class="fa fa-download">Unduh</i>
+                </a>
               </td>
             </tr>
-
+            @endforeach
           </tbody>
         </table>
         </div>
         <hr>
-        <a href="{{url('uploadfile/add')}}" class="btn btn-outline-primary btn-lg"><i class="fas fa-plus-square">Add</i></a>
+        <a href="{{url('form/uploadfile/add')}}" class="btn btn-outline-primary btn-lg"><i class="fas fa-plus-square">Add</i></a>
       </div>
     </div>
 @endsection
